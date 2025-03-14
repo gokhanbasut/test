@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: amorphie.consent
+  title: API PORTAL TEST
   version: '1.0'
 schemes: [https]
 basePath: /OpenBankingConsentHHS
