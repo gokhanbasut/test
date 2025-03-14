@@ -15,7 +15,7 @@ securityDefinitions:
     tokenUrl: https://test-pubagw6.burgan.com.tr/ebanking/token
     scopes: {retail-customer : retail-customer, openId : openId}
 paths:
-  /OpenBankingConsentHHS/ProcessConsentStatus:
+  /ProcessConsentStatus:
     post:
       description: Hesap Bilgisi Rızasının Hazırlanması
       summary: hesapBilgisiRizasi
