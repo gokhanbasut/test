@@ -8,7 +8,7 @@ metadata:
     - rest
   annotations:
     # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
-    backstage.io/definition-at-location: 'url:https://test-openbanking-consent.burgan.com.tr/test.yaml'
+    backstage.io/definition-at-location: 'url:https://test-openbanking-consent.xxx.com.tr/test.yaml'
 spec:
   type: openapi
   lifecycle: production
