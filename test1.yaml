@@ -3,7 +3,7 @@ info:
   title: API PORTAL TEST
   version: '1.0'
 schemes: [https]
-basePath: /OpenBankingConsentHHS
+#basePath: /OpenBankingConsentHHS
 produces: [application/json]
 consumes: [application/json]
 security:
@@ -15,7 +15,7 @@ securityDefinitions:
     tokenUrl: https://test-pubagw6.burgan.com.tr/ebanking/token
     scopes: {retail-customer : retail-customer, openId : openId}
 paths:
-  /ProcessConsentStatus:
+  /OpenBankingConsentHHS/ProcessConsentStatus:
     post:
       description: Hesap Bilgisi Rızasının Hazırlanması
       summary: hesapBilgisiRizasi
@@ -55,6 +55,104 @@ paths:
       - name: body
         in: body
         schema: {$ref: '#/definitions/HesapBilgisiRizasiIstegiDTO'}
+  
+  /preprod-fora/DigitalServices/AccountService.svc/hesaplar/{accountNumber}:
+   get:
+     summary: Hesap bilgilerini getir
+     tags:
+        - Hesap Bilgileri
+     parameters:
+       - name: accountNumber
+         in: path
+         required: true
+         type: string
+         description: Hesap numarası
+       - name: user
+         in: header
+         required: true
+         type: string
+         default: EBT\INTERNETUSER
+       - name: CHANNEL
+         in: header
+         required: true
+         type: string
+         default: INTERNET
+       - name: branch
+         in: header
+         required: true
+         type: string
+         default: 2000
+       - name: Content-Type
+         in: header
+         required: true
+         type: string
+         default: application/json
+       - name: izinTur
+         in: header
+         required: true
+         type: string
+         default: D
+       - name: Cookie
+         in: header
+         required: false
+         type: string
+         default: ASP.NET_SessionId=...; d765907c0cd58c256b4df03b591a1a44=...
+     responses:
+       200:
+         description: Başarılı cevap
+         schema:
+           type: object
+           properties:
+             data:
+               type: object
+               properties:
+                 hesapBilgileri:
+                   type: array
+                   items:
+                     type: object
+                     properties:
+                       hspDty:
+                         type: object
+                         properties:
+                           hspAclsTrh:
+                             type: string
+                             format: date-time
+                       hspTml:
+                         type: object
+                         properties:
+                           hspDrm:
+                             type: string
+                           hspNo:
+                             type: string
+                           hspRef:
+                             type: string
+                           hspShb:
+                             type: string
+                           hspTip:
+                             type: string
+                           hspTur:
+                             type: string
+                           hspUrunAdi:
+                             type: string
+                           kisaAd:
+                             type: string
+                           prBrm:
+                             type: string
+                           subeAdi:
+                             type: string
+                       rizaNo:
+                         type: string
+                 toplamHesapSayisi:
+                   type: integer
+             error:
+               type: object
+       400:
+         description: Geçersiz istek
+       401:
+         description: Yetkisiz
+       500:
+         description: Sunucu hatası
+  
 definitions:
   HesapBilgisiRizasiIstegiDTO:
     title: HesapBilgisiRizasiIstegi
