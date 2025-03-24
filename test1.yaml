@@ -12,7 +12,7 @@ securityDefinitions:
   auth:
     type: oauth2
     flow: password
-    tokenUrl: https://test-pubagw6.burgan.com.tr/ebanking/token
+    tokenUrl: https://nonprod-apisix.burgan.com.tr/ebanking/token
     scopes: {retail-customer : retail-customer, openId : openId}
 paths:
   /OpenBankingConsentHHS/ProcessConsentStatus:
