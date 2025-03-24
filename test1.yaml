@@ -152,7 +152,48 @@ paths:
          description: Yetkisiz
        500:
          description: Sunucu hatası
-  
+  /OpenBankingConsentHHS/GetCustomerBalancesByTckn/{tckn}:
+   get:
+     summary: TCKN ile müşteri bakiye bilgilerini getir
+     tags:
+        - Bakiye Bilgileri
+     parameters:
+       - name: tckn
+         in: path
+         required: true
+         type: string
+         description: Türkiye Cumhuriyeti Kimlik Numarası
+       - name: accept
+         in: header
+         required: true
+         type: string
+         default: '*/*'
+       - name: Authorization
+         in: header
+         required: true
+         type: string
+         description: Bearer token
+         default: Bearer <token>
+       - name: Cookie
+         in: header
+         required: false
+         type: string
+         default: d765907c0cd58c256b4df03b591a1a44=...
+     responses:
+       200:
+         description: Başarılı cevap
+         schema:
+           type: object
+           example:
+             data:
+               balances: []
+             error: null
+       400:
+         description: Geçersiz istek
+       401:
+         description: Yetkisiz
+       500:
+         description: Sunucu hatası
 definitions:
   HesapBilgisiRizasiIstegiDTO:
     title: HesapBilgisiRizasiIstegi
